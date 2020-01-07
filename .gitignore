@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/NFCPOC/.vs/NFCPOC/DesignTimeBuild
+/NFCPOC/.vs/NFCPOC/v16/Server/sqlite3
+/NFCPOC/NFCPOC/bin/Debug/netstandard2.0
+/NFCPOC/NFCPOC/obj
+/NFCPOC/NFCPOC.Android/obj
+/NFCPOC/NFCPOC.iOS/obj
+/NFCPOC/NFCPOC.Android/bin/Debug

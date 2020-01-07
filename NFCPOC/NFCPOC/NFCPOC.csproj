@@ -17,8 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="NFCPage.xaml">
+    <EmbeddedResource Update="Views\NFCPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

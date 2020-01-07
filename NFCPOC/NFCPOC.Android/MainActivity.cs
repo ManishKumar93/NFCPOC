@@ -8,10 +8,13 @@ using Android.Widget;
 using Android.OS;
 using Plugin.NFC;
 using Android.Content;
+using Android.Nfc;
 
 namespace NFCPOC.Droid
 {
-    [Activity(Label = "NFCPOC", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = Helpers.ConstantsHelper.APP_NAME, Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [IntentFilter(new[] { NfcAdapter.ActionNdefDiscovered })]
+
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

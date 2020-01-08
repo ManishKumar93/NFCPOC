@@ -13,7 +13,7 @@ using Android.Nfc;
 namespace NFCPOC.Droid
 {
     [Activity(Label = Helpers.ConstantsHelper.APP_NAME, Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    [IntentFilter(new[] { NfcAdapter.ActionNdefDiscovered })]
+    [IntentFilter(new[] { NfcAdapter.ActionTagDiscovered })]
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

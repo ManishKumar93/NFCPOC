@@ -26,7 +26,9 @@ namespace NFCPOC.Views
             {
                 MessagingCenter.Subscribe<string>(this, "ReadMessage", (message) =>
                 {
-                    App.Current.MainPage.DisplayAlert("Message Received", message, "Ok");
+                    ViewModel.OnRefresh();
+                    Xamarin.Essentials.Vibration.Vibrate();
+                    //App.Current.MainPage.DisplayAlert("Message Received", message, "Ok");
                 });
             }
         }

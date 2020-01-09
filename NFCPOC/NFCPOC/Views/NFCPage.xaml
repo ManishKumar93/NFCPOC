@@ -9,9 +9,18 @@
     <ContentPage.Content>
         <StackLayout Padding="10" Spacing="10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Label Text="Make sure NFC and Android Beam are enabled in your settings"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label HorizontalOptions="StartAndExpand" Text="{Binding IsNFCEnabled, StringFormat='Is NFC Enabled : {0}'}" FontAttributes="Bold"></Label>
+                <Button HorizontalOptions="End" Text="Open NFC Settings" Command="{Binding OpenSettingsCommand}"></Button>
+            </StackLayout>
             <Entry Text="{Binding WriteMessage, Mode=TwoWay}" Placeholder="Enter Message"></Entry>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Last Message Received :"></Label>
+                    <Label Text="{Binding LastMessageReceived}" FontAttributes="Bold"></Label>
+                </StackLayout>
+            </Frame>
             <Image Source="ic_beam"></Image>
-            <Label Text="{Binding LastMessageReceived}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.NFC;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,18 @@ namespace NFCPOC.ViewModels
 {
     public class NFCPageViewModel : BaseViewModel
     {
+        public ICommand OpenSettingsCommand { get; set; }
+
         public string WriteMessage
         {
             get => Global.WriteMessage;
             set
             {
-                Global.WriteMessage = value;
-                OnPropertyChanged(nameof(WriteMessage));
+                if (Global.WriteMessage != value)
+                {
+                    Global.WriteMessage = value;
+                    OnPropertyChanged(nameof(WriteMessage));
+                }
             }
         }
 
@@ -29,7 +35,22 @@ namespace NFCPOC.ViewModels
                 }
                 else
                 {
-                    return "Last Message Received : " + Global.ReadMessage + Environment.NewLine + " on : " + Global.ReadOn.ToShortTimeString();
+                    return Global.ReadMessage + Environment.NewLine + " at : " + Global.ReadOn.ToLongTimeString();
+                }
+            }
+        }
+
+        public bool IsNFCEnabled
+        {
+            get
+            {
+                if (CrossNFC.Current == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return (CrossNFC.IsSupported && CrossNFC.Current.IsAvailable && CrossNFC.Current.IsEnabled);
                 }
             }
         }
@@ -37,12 +58,20 @@ namespace NFCPOC.ViewModels
         public NFCPageViewModel(INavigation navigation)
         {
             Navigation = navigation;
+
+            OpenSettingsCommand = new Command(OnOpenSettings);
+        }
+
+        private void OnOpenSettings()
+        {
+            DependencyService.Get<NFCPOC.Interface.IOpenSettingsInterface>().OpenNFCSettings();
         }
 
         public void OnRefresh()
         {
             OnPropertyChanged(nameof(WriteMessage));
             OnPropertyChanged(nameof(LastMessageReceived));
+            OnPropertyChanged(nameof(IsNFCEnabled));
         }
     }
 }

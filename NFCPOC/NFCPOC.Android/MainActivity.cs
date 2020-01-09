@@ -46,9 +46,14 @@ namespace NFCPOC.Droid
                 mNfcAdapter.SetOnNdefPushCompleteCallback(this, this);
             }
 
+            // Plugin NFC: Initialization
+            Plugin.NFC.CrossNFC.Init(this);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            Xamarin.Forms.DependencyService.Register<NFCPOC.Interface.IOpenSettingsInterface, NFCPOC.Droid.Interface.DroidOpenSettingsInterface>();
+
             LoadApplication(new App());
         }
 
@@ -139,6 +144,9 @@ namespace NFCPOC.Droid
         {
             // onResume gets called after this to handle the intent
             Intent = intent;
+
+            // Plugin NFC: Tag Discovery Interception
+            Plugin.NFC.CrossNFC.OnNewIntent(intent);
         }
 
         void ProcessIntent(Intent intent)

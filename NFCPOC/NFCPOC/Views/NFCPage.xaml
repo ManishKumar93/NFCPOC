@@ -7,10 +7,11 @@
              x:Class="NFCPOC.Views.NFCPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout Padding="10" Spacing="10">
-            <Label Text="{Binding IsSupported, StringFormat = 'NFC IsSupported = {0}'}"></Label>
-            <Label Text="{Binding IsAvailable, StringFormat = 'NFC IsAvailable = {0}'}"></Label>
-            <Label Text="{Binding IsEnabled, StringFormat = 'NFC IsEnabled = {0}'}"></Label>
+        <StackLayout Padding="10" Spacing="10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="Make sure NFC and Android Beam are enabled in your settings"></Label>
+            <Entry Text="{Binding WriteMessage, Mode=TwoWay}" Placeholder="Enter Message"></Entry>
+            <Image Source="ic_beam"></Image>
+            <Label Text="{Binding LastMessageReceived}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
